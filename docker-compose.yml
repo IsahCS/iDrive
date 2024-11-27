@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./iDriveServer
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080' 
+    environment:
+      NODE_ENV: development
+      MONGO_URI: mongodb://db:27017/trip-management
+    volumes:
+      - ./iDriveServer:/app
+      - /app/node_modules
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./iDriveWeb
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./iDriveWeb:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  db:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - '27017:27017'
+    volumes:
+      - db_data:/data/db
+
+volumes:
+  db_data:

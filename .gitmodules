@@ -1,0 +1,9 @@
+[submodule "iDriveServer"]
+	path = iDriveServer
+	url = https://github.com/IsahCS/iDriveServer.git
+[submodule "iDriveServerProject"]
+	path = iDriveServerProject
+	url = https://github.com/IsahCS/iDriveServer.git
+[submodule "iDriveWeb"]
+	path = iDriveWeb
+	url = https://github.com/IsahCS/iDriveWeb.git
